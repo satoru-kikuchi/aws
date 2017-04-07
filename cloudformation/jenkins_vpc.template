@@ -1,0 +1,19 @@
+{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+	"Description" : "jenkins vpc template",
+	"Resources" : {
+		"VPC" : {
+			"Type" : "AWS::EC2::VPC",
+			"Properties" : {
+				"CidrBlock" : "172.30.0.0/16",
+				"EnableDnsSupport" : "true",
+				"EnableDnsHostnames" : "true",
+				"InstanceTenancy" : "default",
+				"Tags" : [{
+					"Key" : "Name",
+					"Value" : "vpc-Jenkinss"
+				}]
+			}
+		}
+	}
+}
