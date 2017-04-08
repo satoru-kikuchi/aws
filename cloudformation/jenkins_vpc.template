@@ -61,6 +61,21 @@
 					"Value" : "JENKINS-PublicRouteTable"
 				}]
 			}
+		},
+		"SecurityGroupDefault" : {
+			"Type" : "AWS::EC2::SecurityGroup",
+			"Properties" : {
+				"GroupDescription" : "default VPC security group",
+				"VpcId" : {
+					"Ref" : "VPC"
+				},
+				"SecurityGroupEgress" : [
+					{
+						"IpProtocoll" : "-1",
+						"CidrIp" : "0.0.0.0/0"
+					}
+				]
+			}
 		}
 	}
 }
