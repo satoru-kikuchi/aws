@@ -74,6 +74,17 @@
 				}
 			}
 		},
+		"subnetroute" : {
+			"Type" : "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties" : {
+				"RouteTableId" : {
+					"Ref" : "RouteTable"
+				},
+				"SubnetId" : {
+					"Ref" : "SubnetDMZAZa"
+				}
+			}
+		},
 		"SecurityGroupDefault" : {
 			"Type" : "AWS::EC2::SecurityGroup",
 			"Properties" : {
