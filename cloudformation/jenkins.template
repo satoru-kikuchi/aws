@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion" : "2010-09-09",
-	"Description" : "jenkins vpc template",
+	"Description" : "jenkins template",
 	"Resources" : {
 		"VPC" : {
 			"Type" : "AWS::EC2::VPC",
@@ -62,6 +62,18 @@
 				}]
 			}
 		},
+		"route" : {
+			"Type" : "AWS::EC2::Route",
+			"Properties" : {
+				"DestinationCidrBlock" : "0.0.0.0/0",
+				"RouteTableId" : {
+					"Ref" : "RouteTable"
+				},
+				"GatewayId" : {
+					"Ref" : "InternetGateway"
+				}
+			}
+		},
 		"SecurityGroupDefault" : {
 			"Type" : "AWS::EC2::SecurityGroup",
 			"Properties" : {
@@ -69,20 +81,16 @@
 				"VpcId" : {
 					"Ref" : "VPC"
 				},
-				"SecurityGroupEgress" : [
-					{
-						"IpProtocol" : "-1",
-						"CidrIp" : "0.0.0.0/0"
-					}
-				],
-				"SecurityGroupIngress" : [
-					{
-						"IpProtocol" : "tcp",
-						"FromPort" : "22",
-						"ToPort" : "22",
-						"CidrIp" : "0.0.0.0/0"
-					}
-				]
+				"SecurityGroupEgress" : [{
+					"IpProtocol" : "-1",
+					"CidrIp" : "0.0.0.0/0"
+					}],
+				"SecurityGroupIngress" : [{
+					"IpProtocol" : "tcp",
+					"FromPort" : "22",
+					"ToPort" : "22",
+					"CidrIp" : "0.0.0.0/0"
+				}]
 			}
 		},
 
