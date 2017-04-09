@@ -69,14 +69,17 @@
 				"VpcId" : {
 					"Ref" : "VPC"
 				},
-				"SecurityGroupEgress" : [
+				"SecurityGroupIngress" : [
 					{
-						"IpProtocol" : "-1",
+						"IpProtocol" : "tcp",
+						"FromPort" : "22",
+						"ToPort" : "22",
 						"CidrIp" : "0.0.0.0/0"
 					}
 				]
 			}
 		},
+
 		"Instance" : {
 			"Type" : "AWS::EC2::Instance",
 			"Properties" : {
@@ -95,13 +98,16 @@
 					"DeviceIndex" : "0",
 					"AssociatePublicIpAddress" : "true",
 					"DeleteOnTermination" : "true",
-					"SubnetId" : [{
+					"SubnetId" : {
 						"Ref" : "SubnetDMZAZa"
-					}],
+					},
 					"GroupSet" : [{
-
 						"Ref" : "SecurityGroupDefault"
 					}]
+				}],
+				"Tags" : [{
+					"Key" : "Name",
+					"Value" : "Jenkins_Instance"
 				}]
 			}
 		}
