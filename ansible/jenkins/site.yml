@@ -1,6 +1,7 @@
 ---
  - name: jenkins setup
    hosts: all
+   become: yes
    tasks:
     - name: "jenkins yum repository"
       yum_repository:
