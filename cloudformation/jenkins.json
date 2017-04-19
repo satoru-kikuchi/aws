@@ -141,6 +141,27 @@
 					"Value" : "Jenkins_Instance"
 				}]
 			}
-    }
+    },
+		"MyLoadBalancer" : {
+			"Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+			"Properties" : {
+				"AvailabilityZones" : [ "ap-northeast-1a" ],
+				"Instances" : [
+					{ "Ref" : "Instance" }
+				],
+				"Listeners" : [ {
+					"LoadBalancerPort" : "443",
+					"InstancePort" : "443",
+					"Protocol" : "HTTPS"
+				} ],
+
+				"HealthCheck" : {
+					"Target" : "HTTPS:443/",
+					"HealthyThreshold" : "3",
+					"UnhealtyThreshold" : "5",
+					"Timeout" : "5"
+				}
+			}
+		}
 	}
 }
